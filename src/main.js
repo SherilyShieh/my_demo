@@ -2,9 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import './plugins/element.js'
 import router from './router'
-import Vuex from 'vuex'
+import store from './store/index'
 
-Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
@@ -24,5 +23,6 @@ router.afterEach((to, from) => {
 
 new Vue({
     router,
+    store,
     render: h => h(App),
 }).$mount('#app')

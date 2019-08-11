@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
 import Day2 from './views/Day2.vue'
 import Test from './views/Test.vue'
 Vue.use(Router)
@@ -41,6 +41,18 @@ export default new Router({
                 name: 'test',
                 component: Test
             }]
-        }
+        },
+        {
+            path: '/vuexdemo',
+            name: 'vuexdemo',
+            props: true,
+            // component: Day2,
+            components: {
+                default: () =>
+                    import ('./views/VuexDemo.vue')
+                    // test: Home
+            }
+        },
+
     ]
 });
