@@ -1,18 +1,30 @@
 <template>
     <div>
-        <input type="text" :value="value" @input="onInput">
+        <input :type="type" :value="value" @input="onInput">
     </div>
 </template>
 
 <script>
     export default {
-        props: ['value'],
+        props: {
+            value:{
+                type:String,
+                default:''
+            },
+            type:{
+                type:String,
+                default:'text'
+            }
+        },
         data() {
             return {
-                onInput(e) {
-                    this.$emit('input', e.target.value);
-                }
             };
+        },
+        methods: {
+            onInput(e) {
+                this.$emit('input', e.target.value);
+                this.$parent.$emit('validate');
+            }            
         }
     }
 </script>

@@ -1,27 +1,45 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
-    </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{model}}
+    <my-form :model="model" :rules="rules">
+      <my-form-item label="用户名" prop="name">
+        <my-input v-model="model.name"></my-input>
+      </my-form-item>
+      <my-form-item label="密码" prop="password">
+        <my-input v-model="model.password" type="password"></my-input>
+      </my-form-item>
+    </my-form>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import MyInput from './components/MyInput.vue'
 import MyFormItem from './components/MyFormItem.vue'
+import MyForm from './components/MyForm.vue'
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld
-    MyFormItem
+    MyInput,
+    MyFormItem,
+    MyForm
+  },
+  data() {
+    return {
+      model: {
+        name: '',
+        password: ''
+      },
+      value: '',
+      rules: {
+        name: [
+          { required: true, message: 'please input name'},
+          { min: 6, max: 10, message: 'info length between 6-10'}
+        ],
+        password: [
+          { required: true, message: 'please input password'}]        
+      }
+    };
   }
 }
 </script>
